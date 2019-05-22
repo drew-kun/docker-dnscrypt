@@ -3,7 +3,13 @@ Automatically updating to the latest version of [DNScrypt Proxy 2](https://githu
 
 Remember to remove IPv6 blocks from your config if you have only IPv4 enabled (default Unraid setting)!
 
-Supply your own dnscrypt-proxy.toml at /config
+**Requires your own dnscrypt-proxy.toml at /config**
+
+[This is the official example config](https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml)
+
+[More details in the official wiki](https://github.com/jedisct1/dnscrypt-proxy/wiki/Configuration)
+
+
 
 ```
 docker run -d \
