@@ -1,4 +1,7 @@
 # docker-dnscrypt2
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J4Y2R6)
+
 Automatically updating to the latest version of [DNScrypt Proxy 2](https://github.com/jedisct1/dnscrypt-proxy) on launch.
 
 Remember to remove IPv6 blocks from your config if you have only IPv4 enabled (default Unraid setting)!
