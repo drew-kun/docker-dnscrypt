@@ -13,10 +13,15 @@ Remember to remove IPv6 blocks from your config if you have only IPv4 enabled (d
 [More details in the official wiki](https://github.com/jedisct1/dnscrypt-proxy/wiki/Configuration)
 
 
+# Run
 
 ```
 docker run -d \
   --name="DNScrypt" \
   -v /path/to/config/:/config:rw \
+  -e VERSION=VERSION_TO_INSTALL \
   rix1337/docker-dnscrypt2
-  ```
+```
+
+# Optional parameters
+ - `-e VERSION` (only set if you wish to install a specific version instead of autoupdating)
