@@ -24,7 +24,7 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 RUN apt-get update && apt-get -y install wget
 
 COPY root/ /
-RUN chmod +x /etc/my_init.d/*.sh && chmod +x /version.py
+RUN chmod +x /etc/my_init.d/*.sh
 
 VOLUME /config
 EXPOSE 53/tcp 53/udp
