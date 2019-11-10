@@ -37,15 +37,15 @@ if [ -n "$FALLBACK" ]; then
 	echo "$resolv_orig" > /etc/resolv.conf
 fi
 
-if [ -f /config/dnscrypt-proxy.toml ]; then
-	cp -rf /config/dnscrypt-proxy.toml /dnscrypt/linux-x86_64/
-	echo "Using your supplied dnscrypt config file"
-else
-	cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
-	echo "Using the default dnscrypt config file"
-fi
-
 if [ ! "$BUILDING_IMAGE" = true ] ; then
+	if [ -f /config/dnscrypt-proxy.toml ]; then
+		cp -rf /config/dnscrypt-proxy.toml /dnscrypt/linux-x86_64/
+		echo "Using your supplied dnscrypt config file"
+	else
+		cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
+		echo "Using the default dnscrypt config file"
+	fi
+
 	cd /dnscrypt/linux-x86_64
 	echo "Starting dnscrypt"
 	./dnscrypt-proxy
