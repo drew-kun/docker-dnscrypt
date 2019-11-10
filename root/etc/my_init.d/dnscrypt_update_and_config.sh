@@ -9,7 +9,13 @@ if [ -n "$FALLBACK" ]; then
 	echo "adding "$FALLBACK" temporarily to /etc/resolv.conf for update purposes"
 fi
 
-DNSCRYPT_PROXY_VERSION=$(curl -s https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+if [ -n "$VERSION" ]; then
+	echo "Using set version "$VERSION" to install DNSCrypt Proxy"
+	DNSCRYPT_PROXY_VERSION=$VERSION
+else
+	DNSCRYPT_PROXY_VERSION=$(curl -s https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+fi
+
 DNSCRYPT_PROXY_DOWNLOAD_URL=https://github.com/jedisct1/dnscrypt-proxy/releases/download/${DNSCRYPT_PROXY_VERSION}/dnscrypt-proxy-linux_x86_64-${DNSCRYPT_PROXY_VERSION}.tar.gz
 
 if [ ! -f /${DNSCRYPT_PROXY_VERSION}.dnscrypt ]; then
