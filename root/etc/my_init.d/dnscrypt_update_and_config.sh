@@ -50,5 +50,5 @@ if [ ! "$BUILDING_IMAGE" = true ] ; then
 	echo "Starting dnscrypt"
 	./dnscrypt-proxy
 else
-	echo "Initial docker build finished!"
+	echo "Initial docker build finished using version "$DNSCRYPT_PROXY_VERSION" of DNSCrypt Proxy!"
 fi
