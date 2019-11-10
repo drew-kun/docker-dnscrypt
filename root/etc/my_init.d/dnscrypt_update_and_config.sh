@@ -16,19 +16,20 @@ else
 	DNSCRYPT_PROXY_VERSION=$(curl -s https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
 fi
 
-DNSCRYPT_PROXY_DOWNLOAD_URL=https://github.com/jedisct1/dnscrypt-proxy/releases/download/${DNSCRYPT_PROXY_VERSION}/dnscrypt-proxy-linux_x86_64-${DNSCRYPT_PROXY_VERSION}.tar.gz
-
-if [ ! -f /${DNSCRYPT_PROXY_VERSION}.dnscrypt ]; then
-	cd /
-	rm *.dnscrypt
-	echo "Downloading latest dnscrypt-proxy"
-	mkdir -p /dnscrypt
-	cd /dnscrypt
-	wget -O dnscrypt-proxy.tar.gz $DNSCRYPT_PROXY_DOWNLOAD_URL
-	tar xzf dnscrypt-proxy.tar.gz
-	rm dnscrypt-proxy.tar.gz
-	cd linux-x86_64
-	touch /${DNSCRYPT_PROXY_VERSION}.dnscrypt
+if [ -n "$DNSCRYPT_PROXY_VERSION" ]; then
+	DNSCRYPT_PROXY_DOWNLOAD_URL=https://github.com/jedisct1/dnscrypt-proxy/releases/download/${DNSCRYPT_PROXY_VERSION}/dnscrypt-proxy-linux_x86_64-${DNSCRYPT_PROXY_VERSION}.tar.gz
+	if [ ! -f /${DNSCRYPT_PROXY_VERSION}.dnscrypt ]; then
+		cd /
+		rm *.dnscrypt &>/dev/null
+		echo "Downloading latest dnscrypt-proxy"
+		mkdir -p /dnscrypt
+		cd /dnscrypt
+		wget -O dnscrypt-proxy.tar.gz $DNSCRYPT_PROXY_DOWNLOAD_URL
+		tar xzf dnscrypt-proxy.tar.gz
+		rm dnscrypt-proxy.tar.gz
+		cd linux-x86_64
+		touch /${DNSCRYPT_PROXY_VERSION}.dnscrypt
+	fi
 fi
 
 # restore resolv.conf
