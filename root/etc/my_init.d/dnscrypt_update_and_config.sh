@@ -45,6 +45,10 @@ else
 	echo "Using the default dnscrypt config file"
 fi
 
-cd /dnscrypt/linux-x86_64
-echo "Starting dnscrypt"
-./dnscrypt-proxy
+if [ ! "$BUILDING_IMAGE" = true ] ; then
+	cd /dnscrypt/linux-x86_64
+	echo "Starting dnscrypt"
+	./dnscrypt-proxy
+else
+	echo "Initial docker build finished!"
+fi
