@@ -26,5 +26,10 @@ RUN apt-get update && apt-get -y install wget
 COPY root/ /
 RUN chmod +x /etc/my_init.d/*.sh
 
+# Install latest version so we can deploy this without internet access
+ENV BUILDING_IMAGE true
+RUN /etc/my_init.d/dnscrypt_update_and_config.sh
+ENV BUILDING_IMAGE false
+
 VOLUME /config
 EXPOSE 53/tcp 53/udp
