@@ -17,7 +17,7 @@ else
 fi
 
 if [ -n "$DNSCRYPT_PROXY_VERSION" ]; then
-	DNSCRYPT_PROXY_DOWNLOAD_URL=https://github.com/jedisct1/dnscrypt-proxy/releases/download/${DNSCRYPT_PROXY_VERSION}/dnscrypt-proxy-linux_x86_64-${DNSCRYPT_PROXY_VERSION}.tar.gz
+	DNSCRYPT_PROXY_DOWNLOAD_URL=https://github.com/jedisct1/dnscrypt-proxy/releases/download/${DNSCRYPT_PROXY_VERSION}/dnscrypt-proxy-linux_arm64-${DNSCRYPT_PROXY_VERSION}.tar.gz
 	if [ ! -f /${DNSCRYPT_PROXY_VERSION}.dnscrypt ]; then
 		cd /
 		rm *.dnscrypt &>/dev/null
@@ -27,7 +27,7 @@ if [ -n "$DNSCRYPT_PROXY_VERSION" ]; then
 		wget -O dnscrypt-proxy.tar.gz $DNSCRYPT_PROXY_DOWNLOAD_URL
 		tar xzf dnscrypt-proxy.tar.gz
 		rm dnscrypt-proxy.tar.gz
-		cd linux-x86_64
+		cd linux-arm64
 		touch /${DNSCRYPT_PROXY_VERSION}.dnscrypt
 	fi
 fi
@@ -40,14 +40,14 @@ fi
 
 if [ ! "$BUILDING_IMAGE" = true ] ; then
 	if [ -f /config/dnscrypt-proxy.toml ]; then
-		cp -rf /config/dnscrypt-proxy.toml /dnscrypt/linux-x86_64/
+		cp -rf /config/dnscrypt-proxy.toml /dnscrypt/linux-arm64/
 		echo "Using your supplied dnscrypt config file"
 	else
 		cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
 		echo "Using the default dnscrypt config file"
 	fi
 
-	cd /dnscrypt/linux-x86_64
+	cd /dnscrypt/linux-arm64
 	echo "Starting dnscrypt"
 	./dnscrypt-proxy
 else
